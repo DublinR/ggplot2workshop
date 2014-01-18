@@ -1,0 +1,27 @@
+# http://www.cookbook-r.com/Graphs/Plotting_means_and_error_bars_(ggplot2)/
+
+############################################################
+
+# Use dose as a factor rather than numeric
+
+dfc2 <- dfc
+dfc2$dose <- factor(dfc2$dose)
+
+# Error bars represent standard error of the mean
+
+ggplot(dfc2, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    geom_errorbar(aes(ymin=len-se, ymax=len+se),
+                  width=.2,                    # Width of the error bars
+                  position=position_dodge(.9))
+
+# Use 95% confidence intervals instead of SEM
+
+ggplot(dfc2, aes(x=dose, y=len, fill=supp)) + 
+    geom_bar(position=position_dodge(), stat="identity") +
+    geom_errorbar(aes(ymin=len-ci, ymax=len+ci),
+                  width=.2,                    # Width of the error bars
+                  position=position_dodge(.9))
+                  
+                  
+##############################################################
