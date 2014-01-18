@@ -7,3 +7,4 @@ The data sets used in this workshop
 2. mtcars (base)
 3. diamonds (ggplot2)
 4. movies (ggplot2)
+5. tips (reshape2)
