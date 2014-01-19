@@ -1,0 +1,6 @@
+A very useful kind of visualization technique is the small multiple. 
+In a small multiple visualization, you create many of the same plot for multiple subsets of the data. 
+ggplot2 has two ways to create small multiples: facet_wrap() and facet_grid().
+
+facet_wrap() creates and labels a plot for every level of a factor which is passed to it. Its primary argument takes the form of a one sided formula: ~Factor. 
+It will then try to efficiently "wrap" these plots into a 2d grid.
