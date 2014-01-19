@@ -1,0 +1,34 @@
+geom - Positions
+======================
+*http://www.ling.upenn.edu/~joseff/rstudy/summer2010_ggplot2_intro.html*
+How geoms are positioned relative to eachother is another feature of plots that you might want to adjust. 
+The possible position adjustments are
+
+- `position_dodge()`
+- `position_fill()`
+- `position_identity()`
+- `position_jitter()`
+- `position_stack()`
+
+I'll demonstrate all of these except `position_jitter()` with bar plots and density plots.
+
+```{r}
+philcit <- subset(phil, Name == "Philadelphia County")
+
+## position = "stack"
+## the default
+ggplot(philcit, aes(Level, value, fill = Gender)) + 
+  geom_bar(position = "stack")
+
+## position = "dodge"
+ggplot(philcit, aes(Level, value, fill = Gender)) + 
+  geom_bar(position = "dodge")
+  
+## position = "fill"
+ggplot(philcit, aes(Level, value, fill = Gender)) + 
+  geom_bar(position = "dodge")
+  
+## position = "identity"
+ggplot(philcit, aes(Level, value, fill = Gender)) + 
+  geom_bar(position = "identity", alpha = 0.3)  
+```  
