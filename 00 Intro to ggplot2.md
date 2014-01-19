@@ -13,3 +13,37 @@ display of common scales.
 
 - Available on CRAN
 - `install.packages("ggplot2")'
+
+<hr>
+ggplot2 is meant to be an implementation of the ***Grammar of Graphics***, hence gg-plot. The basic notion is that there is a grammar to the composition of graphical components in statistical graphics, and by direcly controlling that grammar, you can generate a large set of carefully constructed graphics tailored to your particular needs. Each component is added to the plot as a layer.
+
+Plots convey information through various aspects of their aesthetics. Some aesthetics that plots use are:
+- x position
+- y position
+- size of elements
+- shape of elements
+- color of elements
+
+The elements in a plot are geometric shapes, like
+- points
+- lines
+- line segments
+- bars
+- text
+
+Some of these geometries have their own particular aesthetics. For instance:
+- points
+ - point shape
+ - point size
+- lines
+ - line type
+ - line weight
+- bars
+ - y minimum
+ - y maximum
+ - fill color
+ - outline color
+- text
+ - label value
+
+There are other basics of these graphics that you can adjust, like the scaling of the aesthetics, and the positions of the geometries.
