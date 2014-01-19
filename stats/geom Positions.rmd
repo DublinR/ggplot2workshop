@@ -31,4 +31,12 @@ ggplot(philcit, aes(Level, value, fill = Gender)) +
 ## position = "identity"
 ggplot(philcit, aes(Level, value, fill = Gender)) + 
   geom_bar(position = "identity", alpha = 0.3)  
+  
+## position = "stack"
+ggplot(ay, aes(F1, fill = VClass)) + 
+  stat_density(aes(y = ..count..), position = "stack", color = "black")
+  
+## position = "fill"
+ggplot(ay, aes(F1, fill = VClass)) + 
+  stat_density(aes(y = ..count..), position = "fill", color = "black")  
 ```  
