@@ -1,0 +1,26 @@
+ggplot2 `stat_summary()`
+==============================================
+One of the statistics, `stat_summary()`, is somewhat special, and merits its own discussion. `stat_summary()` takes a few different arguments.
+
+- `fun.y` A function to produce y aestheticss
+- `fun.ymax` A function to produce ymax aesthetics
+- `fun.ymin` A function to produce ymin aesthetics
+- `fun.data` A function to produce a named vector of aesthetics.
+
+You pass a function to each of these arguments, and ggplot2 will use the value returned by that function for the corresponding aesthetic. If you pass a function to fun.data, you can compute many summary statistics and return them as a vector, where each element in the vector is named for the aesthetic it should be used for.
+
+```{r}
+ggplot(diamonds, aes(cut, price)) +
+  stat_summary(fun.y = median, geom = "bar")
+```
+
+```{r}
+median.quartile <- function(x){
+	out <- quantile(x, probs = c(0.25,0.5,0.75))
+	names(out) <- c("ymin","y","ymax")
+	return(out) 
+}
+				
+ggplot(diamonds, aes(cut, price)) +
+  stat_summary(fun.data = median.quartile, geom = "pointrange")
+```  
