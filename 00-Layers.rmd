@@ -1,0 +1,20 @@
+### The grammar of graphics
+- Wilkinson addresses the question of “what is a statistical graphic?”
+- Mapping from data to aesthetic attributes (e.g. colour, shape and size) of geometric objects (e.g. points, lines and bars)
+- Remark: geometric objects are referred to as “geoms”.
+- Wickham’s layered graphics approach is based on Wilkinson’s grammar, but adapts it to fit it into the R environment.
+
+### Layered grammar
+Layered grammar defines a plot as the combination of
+- A default data set and a setting of mappings from variables to aesthetics
+- One or more layers
+- One scale for each aesthetic mapping
+- A coordinate system
+- The faceting specification
+
+### Layers
+Layers are responsible for creating the objects on the plot. Layers are composed of 4 parts
+1) Data / aesthetic mapping
+2) A statistical transformation (stat)
+3) A geometric object (geom)
+4) Position adjustment
