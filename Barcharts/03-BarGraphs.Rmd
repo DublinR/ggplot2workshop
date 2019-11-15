@@ -15,6 +15,8 @@ ggplot(dfc2, aes(x=dose, y=len, fill=supp)) +
                   width=.2,                    # Width of the error bars
                   position=position_dodge(.9))
 
+############################################################
+
 # Use 95% confidence intervals instead of SEM
 
 ggplot(dfc2, aes(x=dose, y=len, fill=supp)) + 
