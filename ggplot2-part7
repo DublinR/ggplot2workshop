@@ -1,0 +1,42 @@
+Chapter 4: 
+
+4.1 Introduction
+4.2
+4.3 Layers
+
+4.1 Introduction
+
+4.2
+
+
+
+
+To create the plot object ourselves, we use
+
+ggplot(). This has two arguments:data and aesthetic mapping. These arguments set up defaults for the plotand can be omitted if you specify data and aesthetics when adding each layer. 
+
+The data argument needs little explanation: It’s the data frame that you want to visualise.
+
+You are already familiar with aesthetic mappings from qplot(), and the syntax here is quite similar, although you need to wrap thepairs of aesthetic attribute and variable name in theaes()function.aes()is described more fully in Section4.5, but it’s not very tricky. 
+
+The followingexample speciﬁes a default mapping of x tocarat, y topriceand colour tocut.p <- ggplot(diamonds, aes(carat, price, colour = cut))This plot object cannot be displayed until we add a layer: there is nothingto see!
+
+4.3 Layers
+
+A minimal layer may do nothing more than specify a geom, a way of visually representing the data. 
+If we add a point geom to the plot we just created, wecreate a scatterplot, which can then be rendered.p <- p + layer(geom = "point")Note how we use+toaddthe layer to the plot. 
+This layer uses the plotdefaults for data and aesthetic mapping and it uses default values for twooptional arguments: the statistical
+
+
+
+
+
+4.6 Geoms
+
+Performing actual rendering of layer, controlling the type of plot made. For example Point Geom -> scatterplot.
+Each Geom has its own set of aesthetics that it understands
+Each Geom has a default statistic and each statistic has a default geom
+4.7 Statistical Transformations
+
+stat-bin : used to make histogram data
+

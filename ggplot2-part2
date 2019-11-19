@@ -1,0 +1,167 @@
+
+2.2 Datasets
+2.3  Basic use
+2.4 Colour, size, shape and other aesthetic attributes
+2.5 plot geoms
+2.5.1 Adding a smoother to a plot
+2.5.3
+2.5.4 Bar charts
+2.6 Faceting
+2.7 Other options
+2.8 differences from plots
+
+qplot()
+short for quickplot
+designed to be very similar to plot
+qplot is the basic plotting function in the ggplot2 package, designed to be familiar if you're used to plot() from the base package
+ 
+qplot(carat, price, data = diamonds, alpha = I(1/10))
+qplot(carat, price, data = diamonds, alpha = I(1/100))
+qplot(carat, price, data = diamonds, alpha = I(1/200))
+ 
+ 
+
+
+
+ 
+
+
+
+2.2 Datasets
+In this chapter we’ll just use one data source, so you can get familiar witht he plotting details rather than having to familiarise yourself with diﬀerentdataset
+s. Thediamon dsdataset consists of prices and quality informationabout 54,000 diamonds, and is included in theggplot2package. 
+The datacontains the four C’s of diamond quality, carat, cut, colour and clarity; andﬁve physical measurements, depth, table, x, y and z, as described in Figure2.1.The ﬁrst few rows of the data are shown in Table2.1
+
+ 2.3  Basic use
+
+As with most plotting functions, the basic input is X and Y, giving the coordinates for the objects on the plot.
+
+If the data frame is specified. The quickplot command goes looking for objects in that data frame before looking outside it.
+
+Wickhams book uses the diamonds dataset. Additionally we show a different example here.
+
+( SDQ score groups before after )
+
+
+2.4 Colour, size, shape and other aesthetic attributes
+
+The ﬁrst big diﬀerence when using ggplot instead of plot comes when you want to assign colours—or sizes or shapes—to the points on your plot.
+
+With plot, it’s your responsibility to convert a categorical variable in your data(e.g., “apples”, “bananas”, “pears”)  into something that plot knows how to use (e.g., “red”, “yellow”, “green”).
+
+qplot can do this for you automatically,and it will automatically provide a legend that maps the displayed attributes to the data values. This makes it easy to include additional data on the plot.In the next example, we augment the plot of carat and price with information about diamond colour and cut. The results are shown in figure 2.2.
+
+qplot(carat, price, data = dsmall, colour = color)
+qplot(carat, price, data = dsmall, shape = cut)
+
+
+
+Fig. 2.2: Mapping point colour to diamond colour (left), and point shape to cut
+quality (right). Colour, size and shape are all examples of aesthetic attributes, visual
+properties that affect the way observations are displayed.
+
+For every aesthetic there is a function called a scale which maps data values to valid values for that aesthetic.
+
+semi transparent points can be used to alleviate overplotting. To do this we use the alpha aesthetic. 
+
+2.5 plot geoms
+Geom : geometric objects
+qplot us not limited to scatterplot can produce any plot by varying the geom argument.
+
+ geom describes the type of object used to display the data.
+
+Some geoms have associated statistical transformations. Histograms have a additional binning function.
+
+For investigating two dimensional relationships with data
+» point
+» smooth
+» boxplot
+» path line
+
+For univariate distributions data
+
+» histograms [ default geom ]
+» frequency polygons [ freqpoly]
+» density
+» barchart for discrete variables
+
+
+
+2.5.1
+2.5.2
+2.5.3 Histograms and density plots
+2.5.5
+2.5.5 Time series
+
+2.5.1 Adding a smoother to a plot
+If you have a scatterplot with many data points, it can be hard to see exactly what trend is shown by the data. In this case you may want to add a smoothed line to the plot. This is easily done using the smooth geom as shown in Figure2.4. 
+
+Notice that we have combined multiple geoms by supplying a vector of geom names created with c(). The geoms will be overlaid in theorder in which they appear.
+
+
+qplot(carat, price, data = dsmall, geom = c("point", "smooth"))
+qplot(carat, price, data = diamonds, geom = c("point", "smooth"))
+
+Despite overplotting, our impression of an exponential relationship between price and carat was correct. There are few diamonds bigger than three carats,and our uncertainty in the form of the relationship increases as illustrated by the point-wise conﬁdence interval shown in grey. If you want to turn theconﬁdence interval of, usese = FALSE.
+
+2.5.2 Boxplots and jittered points
+
+When a set of data contains a categorical variable and one or more continuous variables, boxplots and jittered points are useful for depicting the data in an informative manner.
+
+Assess the distribution of price per carat varies with the colour of the diamond using jittering.
+
+geom = “jitter”
+geom = “boxplot”
+
+
+qplot(color,price/carat, data = diamonds, geom=”jitter”, alpha = I(1/5))
+
+qplot(color,price/carat, data = diamonds, geom=”jitter”, alpha = I(1/50))
+
+qplot(color,price/carat, data = diamonds, geom=”jitter”, alpha = I(1/200))
+
+
+
+For jittered points, qplot() offers the same control over aesthetics as it does for a normal scatterplot: size, colour and shape.
+
+For boxplot you can control the outline colour, the internal fill and the size of the lines.
+2.5.3
+The density plot is more appealing at ﬁrst because it seems easy to read and compare the various curves.
+However, it is more difficult to understand exactly what a density plot is showing.
+In addition, the density plot makes some assumptions that may not be true for our data; i.e., that it is unbounded,continuous and smooth.
+2.5.4 Bar charts
+The discrete analogue of histogram is the bar chart; (geom = "bar"). 
+The bar geom counts the number of instances of each class so that you don’t need to tabulate your values beforehand, as with barchart in base R. 
+If the data has already been tabulated or if you’d like to tabulate class members in some other way, such as by summing up a continuous variable, you can use the weight geom. 
+This is illustrated in Figure 2.13. 
+The ﬁrst plot is a simple bar chart of diamond colour, and the second is a bar chart of diamond colour weighted by carat.
+
+
+
+
+
+
+
+2.6 Faceting
+Faceting creates tables of graphics by splitting the data into subsets and displaying the graph for each subset in an arrangement that facilitates comparison.
+
+Section 7.2 discusses faceting in detail, including a discussion of the advantages and disadvantages of faceting.
+
+“row.var ~ col.var” is the generic format for the faceting.
+“row.var ~ . “ will create a single column with multople rows
+2.7 Other options
+
+Similar to plot()
+·         xlim   	limits for x axis
+·         ylim   	limits for y axis
+·         log      	which variables to log transform ("x", "y", or "xy")
+·         main  	character vector or expression for plot title
+·         xlab   	character vector or expression for x axis label
+·         ylab   	character vector or expression for y axis label
+2.8 Differences from plots
+qplot() is not generic: you can not pass any type of R object and get a result.
+ggplot() is generic.
+
+With ggplot2, you need to add additional layers to the existing plot.
+
+

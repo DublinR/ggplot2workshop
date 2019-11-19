@@ -1,0 +1,20 @@
+Boxplots with ggplot2
+=================================
+This code will display the value of median for each group
+This requires to get the aggregate data.
+
+We used the function summaryBy in the package called **doBy**
+adding text by adding a layer with gemo = "text"
+
+```{r}
+library(doBy)
+a<-summaryBy(write ~ female + ses , hsb2, FUN=c(median)) 
+```
+
+```{r}
+qplot(female, write, data = hsb2, 
+  geom="boxplot") + xlab("") +  layer(data = a, mapping = 
+  aes(x = female, y= write.median+1, label=round(a$write.median)), 
+  geom = "text", color="NavyBlue", size=3.5) +facet_grid(.~ses, 
+  scales="free", space="free") + theme_bw()+ opts(strip.text.y = theme_text()) 
+``` 

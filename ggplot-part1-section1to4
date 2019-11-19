@@ -1,0 +1,125 @@
+
+ggplot2
+
+
+ggplot2
+Introduction
+
+Basic Functions
+Scatterplot matrices in R
+The GGally package
+
+Introduction
+
+The R package "ggplot2" is a free Visualization package for the R statistical analysis platform, loosely based on "The Grammar of Graphics" from Leland Wilkinson.
+
+ggplot2 is an intuitive library that is founded on a logical mapping between data and graphical elements
+
+The package follows the ideas proposed by Grammar of Graphics an influential text in data visualization.
+
+Lattice base package in most R installations
+advanced data visualization capability
+aesthetically pleasing professional quality.
+publication quality graphics.
+
+Grid graphics is a third graphics package, developed by NZ statistician, Paul Murrell. Ggplot and Lattice are based on Grid Graphics.
+
+Ggplot can be thought of as a programming language, designed to produce publication ready graphics.
+
+
+
+Basic Functions
+
+Installing and using the ggplot2 package
+
+
+install.packages("ggplot2") 
+
+# Choose "Ireland" as your mirror
+
+library(ggplot2)
+
+The Diamonds Data set
+
+This dataset contains approximately 50,000 items. 
+Each row is an individual diamond, and some of the variables of interest include the weight of the diamond in carats, color, clarity, and its price.
+
+
+data(diamonds)
+
+The qplot() command
+
+Using base R graphics there are different commands for scatterplots and histograms. 
+But in ggplot2, if you specify a single continuous variable to the qplot() command, you'll get a histogram. 
+If you specify two continuous variables to the same qplot() command, you get a scatterplot. 
+
+
+Basic Histogram
+
+Using base graphics: 
+ 
+with(diamonds, hist(price))
+
+
+using GGPLOT2
+
+qplot(price, data=diamonds, binwidth=1000) 
+
+
+Adding Titles and Labels
+
+to add labels and a main title to your plot using xlab, ylab, and main.  
+If you know how to do this using base graphics, then you already know how to do this using ggplot2.
+
+Using base graphics:
+with(diamonds, plot(carat,price, xlab="Weight in Carats", ylab="Price in USD", main="Diamonds are expensive!"))
+
+
+And using ggplot2:
+qplot(carat, price, data=diamonds, xlab="Weight in Carats", ylab="Price in USD", main="Diamonds are expensive!")
+
+
+Facets
+
+
+qplot(carat, price, data=diamonds, facets=color~.)
+
+qplot(carat, price, data=diamonds, facets=clarity~color)
+
+
+
+
+Scatterplot matrices in R
+
+A useful function in R to produce a scatterplot matrix of selected variables in a dataset. 
+The base graphics function is pairs(). 
+
+Producing these plots can be helpful in exploring your data, especially using the second method below.
+
+Try it out on the built in iris dataset. 
+
+The Iris data set gives the measurements in centimetres of the variables sepal length and width 
+and petal length and width, respectively, for 50 flowers from each of 3 species of iris. 
+
+The species are Iris setosa, versicolor, and virginica.
+
+# Load the iris dataset.
+data(iris)
+ 
+#  Basic scatterplot matrix of the four measurements
+pairs(~Sepal.Length+Sepal.Width+Petal.Length+Petal.Width, data=iris)
+
+
+Similar plot using ggplot2, with the diagonal showing the kernel density.
+
+
+# Plot using ggplot2 
+
+plotmatrix(with(iris, data.frame(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width)))
+
+The GGally package 
+The GGally package extends ggplot2 for plot matrices. 
+
+
+
+

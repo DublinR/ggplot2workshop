@@ -1,0 +1,16 @@
+%http://r4stats.com/examples/graphics-ggplot2/
+\begin{frame}
+\frametitle{Adding Titles and Labels}
+
+To add a title, use the opts() function and its title argument. Adding titless to axes is trickier. 
+You use four different functions depending on the axis and whether or not it is discrete: scale_x_discrete 
+scale_y_distrete scale_x_continuous scale_y_continuous For a bar plot, the x-axis is discrete so I will use scale_x_discrete to assign a label to it. The character sequence “\n” tells R to go to a new line in all R packages.
+
+\begin{verbatim}
+> ggplot(mydata100, aes(workshop, ..count..)) +
++   geom_bar() +
++   opts( title="Workshop Attendance" ) +
++   scale_x_discrete("Statistics Package \nWorkshops")
+\end{verbatim}
+\end{frame}
+%-----------------------------------------------------------%

@@ -1,0 +1,111 @@
+qplot
+========================================================
+
+### 1. Preliminaries
+- Install package
+- Inspect **mtcars** data set
+```{r}
+library(ggplot2)
+# continuous scale vs. discrete scale
+head(mtcars)
+names(mtcars)
+table(mtcars$cyl)
+levels(mtcars$cyl)
+```
+
+```{r fig.width=7, fig.height=4}
+qplot(wt, mpg, data=mtcars, colour=cyl)
+
+```
+
+```{r fig.width=7, fig.height=4}
+# Specifying cyl as a factor
+qplot(wt, mpg, data=mtcars, colour=factor(cyl))
+
+```
+### Use Different "aesthetic"" mappings size and shape
+
+```{r fig.width=7, fig.height=4}
+qplot(wt, mpg, data=mtcars, shape=factor(cyl))
+qplot(wt, mpg, data=mtcars, size=qsec)
+```
+
+### Combine mappings
+```{r fig.width=7, fig.height=4}
+
+# (hint: hollow points, geom-concept, legend combination)
+qplot(wt, mpg, data=mtcars, size=qsec, color=factor(carb))
+qplot(wt, mpg, data=mtcars, size=qsec, color=factor(carb), shape=I(1))
+```
+
+### Scatterplot
+
+```{r fig.width=7, fig.height=4}
+qplot(wt, mpg, data=mtcars, size=qsec, shape=factor(cyl), geom="point")
+qplot(wt, mpg, data=mtcars, size=factor(cyl), geom="point")
+```
+
+
+```{r fig.width=7, fig.height=4}
+# bar-plot
+qplot(factor(cyl), data=mtcars, geom="bar")
+# flip plot by 90°
+qplot(factor(cyl), data=mtcars, geom="bar") + coord_flip()
+```
+
+
+```{r fig.width=7, fig.height=4}
+# difference between fill/color bars
+qplot(factor(cyl), data=mtcars, geom="bar", fill=factor(cyl))
+qplot(factor(cyl), data=mtcars, geom="bar", colour=factor(cyl))
+```
+
+
+```{r fig.width=7, fig.height=4}
+
+# fill by variable
+qplot(factor(cyl), data=mtcars, geom="bar", fill=factor(gear))
+# use different display of bars (stacked, dodged, identity)
+head(diamonds)
+```
+
+
+```{r fig.width=7, fig.height=4}
+qplot(clarity, data=diamonds, geom="bar", fill=cut, position="stack")
+qplot(clarity, data=diamonds, geom="bar", fill=cut, position="dodge")
+qplot(clarity, data=diamonds, geom="bar", fill=cut, position="fill")
+qplot(clarity, data=diamonds, geom="bar", fill=cut, position="identity")
+```
+
+
+```{r fig.width=7, fig.height=4}
+qplot(clarity, data=diamonds, geom="freqpoly", group=cut, colour=cut, position="identity")
+```
+
+
+```{r fig.width=7, fig.height=4}
+qplot(clarity, data=diamonds, geom="freqpoly", group=cut, colour=cut, position="stack")
+```
+
+
+```{r fig.width=7, fig.height=4}
+# histogram
+qplot(carat, data=diamonds, geom="histogram")
+```
+
+
+```{r fig.width=7, fig.height=4}
+# change binwidth
+qplot(carat, data=diamonds, geom="histogram", binwidth=0.1)
+qplot(carat, data=diamonds, geom="histogram", binwidth=0.01)
+```
+
+
+```{r fig.width=7, fig.height=4}
+# use geom to combine plots (hint: order of layers)
+qplot(wt, mpg, data=mtcars, geom=c("point", "smooth"))
+qplot(wt, mpg, data=mtcars, geom=c("smooth", "point"))
+qplot(wt, mpg, data=mtcars, color=factor(cyl), geom=c("point", "smooth"))
+```
+
+

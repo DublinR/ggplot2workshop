@@ -1,0 +1,15 @@
+
+Section 3 : Facetting
+===========================
+
+### Section 3 Faceting
+
+
+```{r}
+
+qplot(cty,data=Mpg2,geom="histogram",binwidth=2)
++ facet_grid(cyl ~ drv)
+
+````
+Margins Faceting a plot is like creating a contingency table. 
+It is often useful to display marginal totals as well the individual cells

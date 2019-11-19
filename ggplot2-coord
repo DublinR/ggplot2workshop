@@ -1,0 +1,59 @@
+\section*{ggplot2 - coord}
+% http://sape.inf.usi.ch/quick-reference/ggplot2/coord
+%--------------------------------------------------------------------------%
+The coordinate system of a plot, together with the x and y position scale, determines the location of geoms.
+
+\begin{itemize}
+\item coord_cartesian - (default) cartesian coordinate system (x horizontal from left to right, y vertical from bottom to top)
+\item coord_flip - flipped cartesian coordinate system (x vertical from bottom to top, y horizontal from left to right)
+\item coord_trans
+\item coord_equal
+\item coord_polar - polar coordinate system; the x (or y) scale is mapped to the angle (theta)
+\end{itemize}
+%--------------------------------------------------------------------------%
+coord_map - various map projections
+Example
+Assume the following data frame:
+\begin{verbatim}
+d=data.frame(height=c(1,2,2,3,4), weight=c(1,3,4,4,2))
+\end{verbatim}
+
+And assume the following plot:
+p = ggplot() +
+geom_line(data=d, mapping=aes(x=height, y=weight)) +
+geom_point(data=d, mapping=aes(x=height, y=weight), size=8, fill="white", shape=21) +
+geom_text(data=d,mapping=aes(x=height, y=weight, label=seq(1,nrow(d))))
+coord_cartesian
+p + coord_cartesian()
+
+%--------------------------------------------------------------------------%
+\textbf{coord_flip}
+p + coord_flip()
+
+
+\textbf{coord_trans}
+p + coord_trans(xtrans="log10", ytrans="log10")
+
+
+\textbf{coord_equal}
+p + coord_equal()
+
+
+\textbf{coord_polar}
+p + coord_polar(theta="x")
+
+
+p + coord_polar(theta="y")
+
+%--------------------------------------------------------------------------%
+\newpage
+\subsection*{Example with coord_map}
+Load the "maps" package and create a data frame containing the latitudes and longitudes of the map of Italy.
+
+require(maps)
+d = data.frame(map(database="italy", plot=F)[c("x", "y")])
+Create a plot using coord_map with its default (mercator) projection:
+ggplot() +
+coord_map() +
+geom_polygon(data=d, mapping=aes(x=x, y=y), fill=hsv(0, 1, 0.7), color=hsv(0, 1, 0.5), size=0.2)
+%--------------------------------------------------------------------------%

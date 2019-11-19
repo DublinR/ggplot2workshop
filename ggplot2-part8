@@ -1,0 +1,45 @@
+Chapter 8 Positioning your plots for Publication
+
+%---------------------------------------------------------------% 
+8.1 Themes
+
+hgramt <- hgram +
+opts(title = "This is a histogram")
+hgramt
+hgramt + opts(plot.title = theme_text(size = 20))
+hgramt + opts(plot.title = theme_text(size = 20,colour = "red"))
+hgramt + opts(plot.title = theme_text(size = 20,hjust = 0))
+hgramt + opts(plot.title = theme_text(size = 20,face = "bold"))
+hgramt + opts(plot.title = theme_text(size = 20,angle = 180))
+
+
+% Page 146
+
+hgramt
+last_plot() + opts(panel.grid.minor = theme_blank())
+last_plot() + opts(panel.grid.major = theme_blank())
+last_plot() + opts(panel.background = theme_blank())
+last_plot() +
+opts(axis.title.x = theme_blank(),
+axis.title.y = theme_blank())
+last_plot() + opts(axis.line = theme_segment())
+%---------------------------------------------------------------%
+
+8.2 Customising Scales and Geoms
+8.3 Saving your Output
+
+ 
+
+
+There are two in-built themes:
+theme_gray() : default setting : grey background with white lines. This follows the advise of Tufte.
+theme_line() : 
+theme_rect() : 
+theme_blank() : 
+
+8.3 Saving your output
+
+%--------------------------------------------------------------%
+8.4 Multiple plots on the same page
+8.4.2 Rectangular Grids
+·         grid.layout()

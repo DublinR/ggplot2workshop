@@ -1,0 +1,61 @@
+Chapter 3: Mastering the Grammar
+
+
+3.1 Introduction
+3.2 Fuel Economy Data
+3.3 Building a scatterplot
+3.4 A more complex plot
+3.5 Components of the Layered grammar
+3.6 Data Structures
+
+
+Learning outcomes of this chapter
+
+
+3.1 Layered grammar of graphics
+
+Iteratively update plots
+encourage/conduce to customized graphics
+
+3.3. Geoms
+
+These are points Lines and bars
+Geoms determine the type of plot
+scaling: Aesthetics to be scales (X position, Y position, colour)
+
+3.5 Components 
+1. Layers
+2. Scales
+3. Coordinate system
+4. Faceting
+
+A plot object is a list with components: data, mapping, layers, scales.
+
+
+3.5 Components of the layered grammar
+Plot generation process
+1) map variables
+2) facet datasets
+3) transform scales
+4) compute aesthetics
+5) train scales
+6) map scales
+7) render geoms
+
+3.5.4 Faceting
+Faceting is a general case of the conditioned or trellis plots, that make it easy to create small multiples each showing a different subset of the whole data set,
+This is a powerful tool when analysing whether patterns are consistent across factors.
+
+3.6 Data Structures
+
+Plot object: list of components (data, mapping, layers,scales,co-ordinates, facets and options)
+Plots constructed in two ways: qplot() and ggplot()
+
+Once you have a plot object
+Render the object on screen using the print() function
+Save the object to disk, using the ggsave() command
+Describe the structure with summary().
+
+p <- qplot(displ, hwy, data = mpg, colour=factor(cyl))
+summary(p)
+

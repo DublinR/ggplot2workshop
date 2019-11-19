@@ -1,0 +1,61 @@
+Chapter 5 Toolbox
+5.1 Introduction
+5.2 Overall Layering Strategy
+5.3 Basic Plot Types
+5.4 Displaying Distributions
+5.5 Dealing with over-plotting
+5.6 Surface Plots
+5.7 Drawing Maps
+5.8 Revealing Uncertainty
+5.9 Statistical Summaries
+5.10 Annotating a plot
+%-----------------------------------------------------------------------------%
+\subsection*{5.1 Introduction}
+The layered structure of ggplot2 encourages design and construction of graphics in a structured manner.
+%-----------------------------------------------------------------------------%
+\subsection*{5.3 Basic Plots}
+Geoms are the fundamental building blocks of ggplot2, useful in their own right, and in conjunction to make more complex plots.
+
+geom_area : draws an area plot
+geom_bar : barchart
+geom_line : produces a line plot
+geom_point: produces a scatterplot.
+geom_polygon: draws polygons, which are filled paths.
+geom_text :  add labels at the specified points
+geom_tile :  makes an image plot or level plot.
+%-----------------------------------------------------------------------------%
+\subsection*{5.4 Displaying distributions}
+There are a number of geoms that can be used to display distributions, depending on 
+the dimensionality of the distribution
+whether the data is continuous or discrete
+whether it is conditional or joint distribution is of interest
+
+%-----------------------------------------------------------------------------%
+5.4
+\begin{verbatim}
+qplot(class,cty,data=mpg,geom=”jitter”)
+qplot(class,drv,data=mpg,geom=”jitter”)
+
+geom_jitter = position_jitter + geom_point
+\end{verbatim}
+
+A crude way of looking at discrete distributions by adding some jitter to prevent overplotting.
+geom_density = stat_density + geom_area :
+A smoothed version of the frequency polygon based on kernel smoothers.
+
+\begin{verbatim}
+qplot(depth,data=diamonds,geom=”density”,xlim=c(54,70))
+
+qplot(depth,data=diamonds,geom=”density”,xlim=c(54,70), 
+     fill =cut, alpha=I(1/5))
+\end{verbatim}     
+%-----------------------------------------------------------------------------%
+\subsection*{5.5 dealing with overplotting}
+Scatterplot is a very important tool for assessing the relationship between two continuous variables.
+
+If the dataset is large, often points will be plotted on top of each other, obscuring the true relationship.
+%-----------------------------------------------------------------------------%
+5.9
+
+5.9.1 Individual summary functions
+5.9.2 single summary fuction
