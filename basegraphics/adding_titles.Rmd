@@ -1,0 +1,68 @@
+
+<p>
+### {Adding titles, lines, points to plots}
+
+
+ <code>
+library(MASS)
+# Colour points and choose plotting symbols according to a levels of a factor
+plot(Cars93$Weight, Cars93$EngineSize, col=as.numeric(Cars93$Type),
+pch=as.numeric(Cars93$Type))
+
+# Adds x and y axes labels and a title.
+plot(Cars93$Weight, Cars93$EngineSize, ylab="Engine Size",
+xlab="Weight", main="My plot")
+# Add lines to the plot.
+lines(x=c(min(Cars93$Weight), max(Cars93$Weight)), y=c(min(Cars93$EngineSize),
+max(Cars93$EngineSize)), lwd=4, lty=3, col="green")
+abline(h=3, lty=2)
+abline(v=1999, lty=4)
+# Add points to the plot.
+</code>
+
+
+chapter{Programming}
+
+
+
+
+
+
+
+%----------------------------------------------------%
+
+#### {Two Sample t test}
+
+The two-sample t test is used to test the hypothesis that two samples may
+be assumed to come from distributions with the same mean.
+
+The theory for the two-sample t test is not very different in principle from
+that of the one-sample test. Data are now from two groups, $x_{11}, . . . , x_{1n1}$
+and $x_{21}, . . . , x_{2n2}$ , which we assume are sampled from the normal distributions
+$N(µ_{1}, sigma^{1}_{2} )$ and
+$N(µ_{2}, sigma^{2}_{2} )$, and it is desired to test the null hypothesis
+$mu_{1} = mu_{2}$. You then calculate
+
+[
+t = frac{bar{X}_{1}-bar{X}_{2}}{S.E.(bar{X}_{1}-bar{X}_{2})}
+]
+
+
+
+
+
+
+
+
+<p>
+### {Introduction to texttt{R}}
+texttt{R} consists of a base package and many additional packages
+texttt{R} was originally designed as a command language.  
+Commands were typed into a text-based input area on the computer screen and the program responded with a response to each command.
+The texttt{R} console opens with information and then a prompt mark  ``>"  it is ready to accept commands
+texttt{R}  is an open source software package, meaning that the code written to implement the various functions can be freely examined and modified.
+texttt{R} can be installed free of charge from the texttt{R}-project website.
+
+
+
+

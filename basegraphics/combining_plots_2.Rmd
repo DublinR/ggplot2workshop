@@ -1,0 +1,24 @@
+
+#### *{Combining Plots}
+Multiple plots can be combined into a single graph, arranged vertically, horizontally or in a grid.
+
+This can be implemented with ``par( )`` function, specifying the arrangment using the ``mfrow`` argument.
+
+Suppose we require a histogram above a boxplot (with horizontal orientation). 
+If we consider this as a grid, we have an array of two rows, with one column.
+
+<pre>
+<code>
+# 2 plots arranged in 2 rows and 1 column
+
+
+par(mfrow=c(2,1))
+
+
+hist(mtcars$wt, main="Histogram of wt",col=c("lightblue","blue"))
+boxplot(mtcars$
+wt, main="Boxplot of wt",horizontal=TRUE,col="lightblue")
+
+</code>
+</pre>
+
