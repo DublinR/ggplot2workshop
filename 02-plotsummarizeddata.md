@@ -25,23 +25,3 @@ You’ve already seen how to use stat_bin() to summarize your data into bins, be
 
 > ggplot(quakes, aes(x=depth)) + geom_bar(binwidth=50)
 > ggplot(quakes, aes(x=depth)) + stat_bin(binwidth=50)
-How to smooth R data in ggplot2
-
-The ggplot2 package also makes it very easy to create regression lines through your data. You use the stat_smooth() function to create this type of line.
-
-The interesting thing about stat_smooth() is that it makes use of local regression by default. R has several functions that can do this, but ggplot2 uses the loess() function for local regression. This means that if you want to create a linear regression model you have to tell stat_smooth() to use a different smoother function. You do this with the method argument.
-
-To illustrate the use of a smoother, start by creating a scatterplot of unemployment in the longley dataset:
-
-> ggplot(longley, aes(x=Year, y=Employed)) + geom_point()
-Next, add a smoother. This is as simple as adding stat_smooth() to your line of code.
-
-> ggplot(longley, aes(x=Year, y=Employed)) +
-+   geom_point() + stat_smooth()
-Finally, tell stat_smooth to use a linear regression model. You do this by adding the argument method="lm".
-
-image0.jpg
-> ggplot(longley, aes(x=Year, y=Employed)) +
-+   geom_point() + stat_smooth(method="lm")
-How to tell ggplot2 to leave your data unsummarized
-Sometimes you don’t want ggplot2 to summarize your data in the plot. This usually happens when your data is already pre-summarized or when each line of your data frame has to be plotted separately. In these cases, you want to tell ggplot2 to do nothing at all, and the stat to do this is stat_identity().
