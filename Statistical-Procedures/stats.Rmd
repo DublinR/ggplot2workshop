@@ -85,3 +85,111 @@ p <- ggplot(iris, aes(Species, Sepal.Length))
 p + stat_summary(fun.y = mean, geom = "point", color = "red", size = 5) + stat_summary(fun.data = "myFunc",
 geom = "errorbar", width = 0.2)
 ```
+
+
+Sure thing, Kevin. Here's your tutorial tidied up, with clearer headings, improved formatting, and concise explanations for readability and flow:
+
+---
+
+# 📊 ggplot2 Statistical Layers: `stat_` Functions
+
+## Overview
+In **ggplot2**, `stat_` functions apply statistical transformations that summarize your data for visualization. These are useful for tasks like trend fitting, summary statistics, and distributions.
+
+---
+
+## 1. `stat_smooth()` – Smoothing Lines
+This function overlays a fitted curve (e.g., loess or linear) and a confidence interval ribbon.
+
+```r
+library(ggplot2)
+p <- ggplot(mpg, aes(displ, hwy))
+p + geom_point() + stat_smooth()
+```
+
+You can change the method of smoothing:
+
+```r
+p + geom_point() + stat_smooth(method = "lm")        # Linear model
+p + geom_point() + stat_smooth(method = "rlm")       # Robust linear model (from MASS package)
+```
+
+**Custom formula** example:
+
+```r
+stat_smooth(method = "lm", formula = y ~ I(x^2))     # Quadratic curve
+```
+
+Grouped by factor or faceted:
+
+```r
+ggplot(iris, aes(Sepal.Length, Sepal.Width, color = Species)) + 
+  geom_point() + stat_smooth(method = "lm")
+
+ggplot(iris, aes(Sepal.Length, Sepal.Width)) + 
+  geom_point() + facet_grid(. ~ Species) + stat_smooth(method = "lm")
+```
+
+You can even remove `geom_point()` to show only the smooth line.
+
+---
+
+## 2. `stat_summary()` – Custom Summaries
+Summarizes data (e.g. mean, median, min/max) using user-defined or built-in functions.
+
+### Example: Bar of Species Mean Sepal Width
+
+```r
+ggplot(iris, aes(Species, Sepal.Width)) + 
+  stat_summary(fun.y = mean, geom = "bar")
+```
+
+### Example: Point and Error Bars
+
+Define a function to return ymin and ymax:
+
+```r
+myFunc <- function(x) {
+  c(ymin = mean(x) - sd(x), ymax = mean(x) + sd(x))
+}
+
+ggplot(iris, aes(Species, Sepal.Length)) +
+  stat_summary(fun.y = mean, geom = "point", color = "red", size = 5) +
+  stat_summary(fun.data = myFunc, geom = "errorbar", width = 0.2)
+```
+
+### Example: Custom Median + Quartile Range
+
+```r
+median.quartile <- function(x){
+  out <- quantile(x, probs = c(0.25, 0.5, 0.75))
+  names(out) <- c("ymin", "y", "ymax")
+  return(out)
+}
+
+ggplot(diamonds, aes(cut, price)) +
+  stat_summary(fun.data = median.quartile, geom = "pointrange")
+```
+
+---
+
+## 3. `stat_ecdf()` – Empirical CDFs
+
+Shows the proportion of data points less than or equal to each x value.
+
+```r
+df <- data.frame(
+  x = c(rnorm(100, 0, 3), rnorm(100, 0, 10)),
+  g = gl(2, 100)
+)
+
+ggplot(df, aes(x, colour = g)) + stat_ecdf()
+```
+
+Or with `qplot()`:
+
+```r
+qplot(rnorm(1000), stat = "ecdf", geom = "step")
+```
+
+---
